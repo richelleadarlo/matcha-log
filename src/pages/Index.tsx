@@ -55,36 +55,37 @@ const Index = () => {
       </header>
 
       {/* Main content */}
-      <main className="max-w-2xl mx-auto px-4 py-8 space-y-8">
-        {/* Add form */}
-        <MatchaForm onAdd={addEntry} />
-
-        {/* List section */}
-        {entries.length > 0 && (
-          <section className="space-y-4">
-            <SortControls sort={sort} onSortChange={setSort} count={entries.length} />
-            <div className="space-y-3">
-              {sorted.map((entry) => (
-                <MatchaCard
-                  key={entry.id}
-                  entry={entry}
-                  isTopRated={entry.rating === maxRating && maxRating >= 4}
-                  onDelete={deleteEntry}
-                  onToggleFavorite={toggleFavorite}
-                />
-              ))}
-            </div>
+      <main className="max-w-6xl mx-auto px-4 py-8">
+        <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] items-start">
+          {/* Left column: add form */}
+          <section className="md:sticky md:top-6">
+            <MatchaForm onAdd={addEntry} />
           </section>
-        )}
 
-        {/* Empty state */}
-        {entries.length === 0 && (
-          <div className="text-center py-12 text-muted-foreground">
-            <p className="text-4xl mb-3">🍃</p>
-            <p className="font-display text-lg">No matcha logged yet</p>
-            <p className="text-sm mt-1">Add your first entry above!</p>
-          </div>
-        )}
+          {/* Right column: entries */}
+          {entries.length > 0 ? (
+            <section className="space-y-4">
+              <SortControls sort={sort} onSortChange={setSort} count={entries.length} />
+              <div className="space-y-3">
+                {sorted.map((entry) => (
+                  <MatchaCard
+                    key={entry.id}
+                    entry={entry}
+                    isTopRated={entry.rating === maxRating && maxRating >= 4}
+                    onDelete={deleteEntry}
+                    onToggleFavorite={toggleFavorite}
+                  />
+                ))}
+              </div>
+            </section>
+          ) : (
+            <div className="text-center py-12 text-muted-foreground bg-card rounded-xl border border-border">
+              <p className="text-4xl mb-3">🍃</p>
+              <p className="font-display text-lg">No matcha logged yet</p>
+              <p className="text-sm mt-1">Add your first entry on the left!</p>
+            </div>
+          )}
+        </div>
       </main>
     </div>
   );
