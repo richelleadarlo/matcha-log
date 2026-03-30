@@ -2,7 +2,7 @@
 
 Matcha Log is a simple web app for keeping track of your favorite matcha tins. Add matcha names and ratings, then view them in a clean, sortable list.
 
-![matcha log overview](public/thumbail-matcha.png)
+<!--![matcha log overview](public/thumbail-matcha.png)-->
 
 ##  Features
 - Add matcha entries (name + rating)
